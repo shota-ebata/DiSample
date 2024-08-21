@@ -1,6 +1,8 @@
 package com.ebata_shota.disample
 
 import com.ebata_shota.disample.domain.model.User
+import com.ebata_shota.disample.infra.db.MyDatabase
+import com.ebata_shota.disample.infra.repository.UserRepository
 import com.ebata_shota.disample.presenter.MainPresenter
 import org.junit.Test
 
@@ -8,7 +10,11 @@ import org.junit.Assert.*
 
 class MainPresenterTest {
 
-    private val presenter = MainPresenter()
+    private val presenter = MainPresenter(
+        userRepository = UserRepository(
+            database = MyDatabase()
+        )
+    )
 
     @Test
     fun saveUserName_test() {
