@@ -1,24 +1,26 @@
 package com.ebata_shota.disample.presenter
 
 import com.ebata_shota.disample.domain.model.User
+import com.ebata_shota.disample.infra.repository.UserRepository
 
-class MainPresenter {
-
-    private var user: User? = null
+class MainPresenter(
+    val userRepository: UserRepository
+) {
 
     fun getUser(): User? {
-        return user
+        return userRepository.getUser(0)
     }
 
     fun saveUserName(name: String) {
-        user = User(
+        val user = User(
             id = 0,
             name = name
         )
+        userRepository.saveUser(user)
     }
 
     fun removeUser() {
-        user = null
+        userRepository.removeUser(0)
     }
 
 }
