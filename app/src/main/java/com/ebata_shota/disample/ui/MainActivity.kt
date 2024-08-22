@@ -9,21 +9,20 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.ebata_shota.disample.DiSampleApp
 import com.ebata_shota.disample.R
-import com.ebata_shota.disample.di.Component
 import com.ebata_shota.disample.presenter.MainPresenter
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    @Inject
     lateinit var presenter: MainPresenter
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val app = (application as DiSampleApp)
-        app.component.inject(this)
 
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)

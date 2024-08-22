@@ -1,9 +1,8 @@
 package com.ebata_shota.disample
 
 import android.app.Application
-import com.ebata_shota.disample.di.Component
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class DiSampleApp : Application() {
-
-    val component = Component()
 }
