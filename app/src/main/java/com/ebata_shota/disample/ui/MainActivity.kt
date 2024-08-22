@@ -9,22 +9,22 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.ebata_shota.disample.DiSampleApp
 import com.ebata_shota.disample.R
-import com.ebata_shota.disample.infra.db.MyDatabase
-import com.ebata_shota.disample.infra.repository.UserRepositoryImpl
+import com.ebata_shota.disample.di.Component
 import com.ebata_shota.disample.presenter.MainPresenter
 
 class MainActivity : AppCompatActivity() {
 
-    private val presenter = MainPresenter(
-        userRepository = UserRepositoryImpl(
-            database = MyDatabase()
-        )
-    )
+    lateinit var presenter: MainPresenter
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val app = (application as DiSampleApp)
+        app.component.inject(this)
+
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
