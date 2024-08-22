@@ -2,6 +2,7 @@ package com.ebata_shota.disample.infra.repository
 
 import com.ebata_shota.disample.domain.model.User
 import com.ebata_shota.disample.infra.db.MyDatabase
+import javax.inject.Inject
 
 interface UserRepository {
     fun getUser(userId: Int): User?
@@ -11,7 +12,9 @@ interface UserRepository {
     fun removeUser(userId: Int)
 }
 
-class UserRepositoryImpl(
+class UserRepositoryImpl
+@Inject
+constructor(
     private val database: MyDatabase
 ) : UserRepository {
     override fun getUser(userId: Int): User? {
