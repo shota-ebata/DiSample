@@ -3,18 +3,26 @@ package com.ebata_shota.disample.infra.repository
 import com.ebata_shota.disample.domain.model.User
 import com.ebata_shota.disample.infra.db.MyDatabase
 
-class UserRepository(
+interface UserRepository {
+    fun getUser(userId: Int): User?
+
+    fun saveUser(user: User)
+
+    fun removeUser(userId: Int)
+}
+
+class UserRepositoryImpl(
     private val database: MyDatabase
-) {
-    fun getUser(userId: Int): User? {
+) : UserRepository {
+    override fun getUser(userId: Int): User? {
         return database.select(userId)
     }
 
-    fun saveUser(user: User) {
+    override fun saveUser(user: User) {
         database.insertUser(user)
     }
 
-    fun removeUser(userId: Int) {
+    override fun removeUser(userId: Int) {
         database.remove(userId)
     }
 }

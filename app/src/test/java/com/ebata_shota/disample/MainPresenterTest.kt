@@ -1,20 +1,26 @@
 package com.ebata_shota.disample
 
 import com.ebata_shota.disample.domain.model.User
-import com.ebata_shota.disample.infra.db.MyDatabase
-import com.ebata_shota.disample.infra.repository.UserRepository
+import com.ebata_shota.disample.mock.MockUserRepository
 import com.ebata_shota.disample.presenter.MainPresenter
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 class MainPresenterTest {
 
+    private val mockUserRepository = MockUserRepository()
     private val presenter = MainPresenter(
-        userRepository = UserRepository(
-            database = MyDatabase()
-        )
+        userRepository = mockUserRepository
     )
+
+    @Test
+    fun getUser_test() {
+        // execute
+        presenter.getUser()
+
+        // assert userRepository.getUser() が引数「0」で呼び出されたことを確認
+        assertEquals(mockUserRepository.valueGetUser, 0)
+    }
 
     @Test
     fun saveUserName_test() {
@@ -23,23 +29,17 @@ class MainPresenterTest {
         // execute
         presenter.saveUserName(name)
 
-        // assert
+        // assert userRepository.saveUser() が引数「User(0, "hoge")」で呼び出されたことを確認
         val actual = User(0, name)
-        val user = presenter.getUser()
-        assertEquals(user, actual)
+        assertEquals(mockUserRepository.valueSaveUser, actual)
     }
 
     @Test
     fun removeUser() {
-        val name = "hoge"
-        presenter.saveUserName(name)
-
         // execute
         presenter.removeUser()
 
-        // assert
-        val actual: User? = null
-        val user = presenter.getUser()
-        assertEquals(user, actual)
+        // assert userRepository.removeUser() が引数「0」で呼び出されたことを確認
+        assertEquals(mockUserRepository.valueRemoveUser, 0)
     }
 }
