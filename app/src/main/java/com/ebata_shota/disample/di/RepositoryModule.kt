@@ -1,6 +1,6 @@
 package com.ebata_shota.disample.di
 
-import com.ebata_shota.disample.infra.repository.UserRepository
+import com.ebata_shota.disample.domain.repository.UserRepository
 import com.ebata_shota.disample.infra.repository.UserRepositoryImpl
 import dagger.Binds
 import dagger.Module
