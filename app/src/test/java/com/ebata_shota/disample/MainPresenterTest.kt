@@ -4,14 +4,21 @@ import com.ebata_shota.disample.domain.model.User
 import com.ebata_shota.disample.mock.MockUserRepository
 import com.ebata_shota.disample.presenter.MainPresenter
 import org.junit.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
 
 class MainPresenterTest {
 
-    private val mockUserRepository = MockUserRepository()
-    private val presenter = MainPresenter(
-        userRepository = mockUserRepository
-    )
+    private lateinit var mockUserRepository: MockUserRepository
+    private lateinit var presenter: MainPresenter
+
+    @Before
+    fun setup() {
+        mockUserRepository = MockUserRepository()
+        presenter = MainPresenter(
+            userRepository = mockUserRepository
+        )
+    }
 
     @Test
     fun getUser_test() {
