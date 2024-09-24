@@ -5,10 +5,16 @@ import com.ebata_shota.disample.presenter.MainPresenter
 import org.junit.Test
 
 import org.junit.Assert.*
+import org.junit.Before
 
 class MainPresenterTest {
 
-    private val presenter = MainPresenter()
+    private lateinit var presenter: MainPresenter
+
+    @Before
+    fun setup() {
+        presenter = MainPresenter()
+    }
 
     @Test
     fun saveUserName_test() {
