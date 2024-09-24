@@ -7,14 +7,20 @@ import com.ebata_shota.disample.presenter.MainPresenter
 import org.junit.Test
 
 import org.junit.Assert.*
+import org.junit.Before
 
 class MainPresenterTest {
 
-    private val presenter = MainPresenter(
-        userRepository = UserRepository(
-            database = MyDatabase()
+    private lateinit var presenter: MainPresenter
+
+    @Before
+    fun setup() {
+        presenter = MainPresenter(
+            userRepository = UserRepository(
+                database = MyDatabase()
+            )
         )
-    )
+    }
 
     @Test
     fun saveUserName_test() {
