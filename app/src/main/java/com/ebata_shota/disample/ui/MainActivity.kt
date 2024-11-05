@@ -10,8 +10,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.ebata_shota.disample.R
+import com.ebata_shota.disample.infra.db.MyDatabase
+import com.ebata_shota.disample.infra.repository.UserRepositoryImpl
+import com.ebata_shota.disample.presenter.MainPresenter
 
 class MainActivity : AppCompatActivity() {
+
+    private val presenter = MainPresenter(
+        userRepository = UserRepositoryImpl(
+            database = MyDatabase()
+        )
+    )
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,21 +37,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
+        val user = presenter.getUser()
         val textView = findViewById<TextView>(R.id.text_view)
-        textView.text = "デフォルト"
+        textView.text = user?.name ?: "デフォルト"
 
         val editText = findViewById<EditText>(R.id.edit_text)
 
         val button1 = findViewById<Button>(R.id.button_1)
         button1.setOnClickListener {
             // button_1の押下時イベント
-            textView.text = editText.text
+            val name = editText.text.toString()
+            presenter.saveUserName(name)
+            val newName = presenter.getUser()?.name ?: "なし"
+            textView.text = newName
         }
 
         val button2 = findViewById<Button>(R.id.button_2)
         button2.setOnClickListener {
             // button_2の押下時イベント
-            textView.text = ""
+            presenter.removeUser()
+            textView.text = presenter.getUser()?.name ?: "なし"
             editText.text.clear()
         }
     }
