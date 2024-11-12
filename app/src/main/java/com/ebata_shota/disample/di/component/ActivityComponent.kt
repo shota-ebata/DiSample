@@ -14,7 +14,9 @@ class ActivityComponent(
     presenterModule: PresenterModule
 ) {
 
-    private val mainPresenter: MainPresenter = presenterModule.provideMainPresenter(appComponent.getUserRepository())
+    private val mainPresenter: MainPresenter by lazy {
+        presenterModule.provideMainPresenter(appComponent.getUserRepository())
+    }
 
     fun inject(mainActivity: MainActivity) {
         mainActivity.presenter = mainPresenter
