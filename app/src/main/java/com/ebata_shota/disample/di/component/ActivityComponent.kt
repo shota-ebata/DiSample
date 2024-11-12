@@ -5,7 +5,8 @@ import com.ebata_shota.disample.presenter.MainPresenter
 import com.ebata_shota.disample.ui.MainActivity
 
 /**
- * インスタンスの生成
+ * インスタンスの生成を
+ * Moduleや他のComponentに依頼する
  * ＆
  * Activityが生存している間だけインスタンスを保持
  */

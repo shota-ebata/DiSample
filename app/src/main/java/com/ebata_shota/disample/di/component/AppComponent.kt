@@ -6,7 +6,8 @@ import com.ebata_shota.disample.infra.db.MyDatabase
 import com.ebata_shota.disample.infra.repository.UserRepository
 
 /**
- * インスタンスの生成
+ * インスタンスの生成を
+ * Moduleや他のComponentに依頼する
  * ＆
  * アプリが生存している間だけインスタンスを保持
  */
