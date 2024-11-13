@@ -11,10 +11,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.ebata_shota.disample.DiSampleApp
 import com.ebata_shota.disample.R
-import com.ebata_shota.disample.di.Component
+import com.ebata_shota.disample.di.component.ActivityComponent
+import com.ebata_shota.disample.di.module.PresenterModule
 import com.ebata_shota.disample.presenter.MainPresenter
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var activityComponent: ActivityComponent
 
     lateinit var presenter: MainPresenter
 
@@ -22,8 +25,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val app = (application as DiSampleApp)
-        app.component.inject(this)
+        activityComponent = ActivityComponent(
+            appComponent = (application as DiSampleApp).appComponent,
+            presenterModule = PresenterModule()
+        )
+        activityComponent.inject(this)
 
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
