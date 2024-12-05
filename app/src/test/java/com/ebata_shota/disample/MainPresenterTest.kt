@@ -1,6 +1,7 @@
 package com.ebata_shota.disample
 
 import com.ebata_shota.disample.domain.model.User
+import com.ebata_shota.disample.mock.MockLogRepository
 import com.ebata_shota.disample.mock.MockUserRepository
 import com.ebata_shota.disample.presenter.MainPresenter
 import org.junit.Assert.assertEquals
@@ -9,8 +10,10 @@ import org.junit.Test
 class MainPresenterTest {
 
     private val mockUserRepository = MockUserRepository()
+    private val mockLogRepository = MockLogRepository()
     private val presenter = MainPresenter(
-        userRepository = mockUserRepository
+        userRepository = mockUserRepository,
+        logRepository = mockLogRepository
     )
 
     @Test
