@@ -1,7 +1,7 @@
 package com.ebata_shota.disample.mock
 
 import com.ebata_shota.disample.domain.model.User
-import com.ebata_shota.disample.infra.repository.UserRepository
+import com.ebata_shota.disample.domain.repository.UserRepository
 
 class MockUserRepository : UserRepository {
 

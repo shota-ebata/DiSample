@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        presenter.sendPageLog()
+
         initViews()
     }
 
