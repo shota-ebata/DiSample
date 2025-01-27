@@ -7,7 +7,7 @@ import javax.inject.Inject
 /**
  * Debug用
  */
-class LogRepositoryImpl
+class DebugLogRepositoryImpl
 @Inject
 constructor() : LogRepository {
     override fun sendEventLog(message: String) {

@@ -1,7 +1,7 @@
 package com.ebata_shota.disample.di
 
-import com.ebata_shota.disample.domain.repository.UserRepository
-import com.ebata_shota.disample.infra.repository.UserRepositoryImpl
+import com.ebata_shota.disample.domain.repository.LogRepository
+import com.ebata_shota.disample.infra.repository.ReleaseLogRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -12,7 +12,8 @@ import dagger.hilt.components.SingletonComponent
  */
 @Module
 @InstallIn(SingletonComponent::class)
-interface RepositoryModule {
+interface DynamicRepositoryModule {
+
     @Binds
-    fun bindUserRepository(repository: UserRepositoryImpl): UserRepository
+    fun bindLogRepository(repository: ReleaseLogRepositoryImpl): LogRepository
 }

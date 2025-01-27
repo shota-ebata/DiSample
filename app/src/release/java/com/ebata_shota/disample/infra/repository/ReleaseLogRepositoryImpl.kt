@@ -6,7 +6,7 @@ import javax.inject.Inject
 /**
  * Release用
  */
-class LogRepositoryImpl
+class ReleaseLogRepositoryImpl
 @Inject
 constructor() : LogRepository {
     override fun sendEventLog(message: String) {
